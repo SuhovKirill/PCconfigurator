@@ -1,0 +1,51 @@
+﻿<metrocontrols:MetroWindow 
+        x:Class="PCConfigurator.View.Windows.EditorAssembly"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PCConfigurator.View.Windows"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:metrocontrols="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        x:Name="MyWindow"
+        DataContext="{Binding Source={StaticResource Locator}, Path=EditorAssembly}"
+        Title="Редактор сборки" Height="500" Width="600">
+
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cmd:EventToCommand Command="{Binding Path=CmdInitializated}" CommandParameter="{Binding ElementName=MyWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <metrocontrols:MetroWindow.RightWindowCommands>
+        <metrocontrols:WindowCommands>
+            <Button Content="Сохранить" Command="{Binding ButSave}" />
+            <Button Content="Сохранить в файл" Command="{Binding Path=ButSaveToFile}" />
+            <Button Content="Назад" Command="{Binding Path=ButBack}" CommandParameter="{Binding ElementName=MyWindow}"/>
+        </metrocontrols:WindowCommands>
+    </metrocontrols:MetroWindow.RightWindowCommands>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <Label Content="Название сборки"  />
+            <TextBox Text="{Binding Path=Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MinWidth="150"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" x:Name="ChoiceItems" />
+        <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" HorizontalAlignment="Center" Background="Black"/>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2" x:Name="CellItems" />
+    </Grid>
+</metrocontrols:MetroWindow>

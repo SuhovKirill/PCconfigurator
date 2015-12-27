@@ -1,0 +1,33 @@
+﻿<metrocontrols:MetroWindow x:Class="PCConfigurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PCConfigurator"
+        xmlns:metrocontrols="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        
+        BorderThickness="1" 
+        GlowBrush="Black"
+        ResizeMode="CanResizeWithGrip"
+
+        WindowTransitionsEnabled="False"
+        WindowStartupLocation="CenterScreen"
+                           
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        x:Name="MyWindow"
+        Title="Конфигуратор ПК" Height="350" Width="525">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+
+            <Button Content="Элементы" Command="{Binding Path=ButItems}" CommandParameter="{Binding ElementName=MyWindow}" />
+
+            <Button Content="Категории" Command="{Binding Path=ButCategories}" CommandParameter="{Binding ElementName=MyWindow}"/>
+
+            <Button Content="Новая сборка" Command="{Binding Path=ButNewAssembly}" CommandParameter="{Binding ElementName=MyWindow}" />
+
+            <Button Content="Сборки"  Command="{Binding Path=ButAssemblies}" CommandParameter="{Binding ElementName=MyWindow}"/>
+
+        </StackPanel>
+    </Grid>
+</metrocontrols:MetroWindow>
